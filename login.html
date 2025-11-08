@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Aurelius Time</title>
+    <meta name="description" content="Đăng nhập vào tài khoản Aurelius Time của bạn để truy cập các tính năng độc quyền.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="../project/assets/LIB/bootstrap.min.css" rel="stylesheet">
+    <link href="../project/assets/LIB/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, #f8f6f0 0%, #ffffff 100%);
+        }
+
+        .login-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .login-body {
+            padding: 40px;
+        }
+
+        .form-floating {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .form-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d668 100%);
+            border: none;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.5s ease;
+        }
+
+        .btn-login:hover::before {
+            left: 100%;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: #999;
+        }
+
+        .alert {
+            border-radius: 10px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .spinner-border-sm {
+            width: 20px;
+            height: 20px;
+            border-width: 2px;
+        }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        .form-check-input:checked {
+            background-color: #d4af37;
+            border-color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../project/img/logo.png" alt="Aurelius Time Logo" style="height: 64px; width: auto; margin-right: 24px;">
+                Aurelius Time
+            </a>
+            <div class="ms-auto">
+                <a href="register.html" class="btn btn-outline-dark">Đăng ký</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="container">
+            <div class="login-card">
+                <div class="login-header">
+                    <i class="bi bi-person-circle text-warning"></i>
+                    <h2 class="fw-bold mb-2">Chào mừng trở lại</h2>
+                    <p class="mb-0 opacity-75">Đăng nhập vào tài khoản của bạn</p>
+                </div>
+
+                <div class="login-body">
+                    <div id="alertContainer"></div>
+
+                    <form id="loginForm">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            <label for="email">Email</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                            <label for="password">Mật khẩu</label>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Ghi nhớ đăng nhập
+                                </label>
+                            </div>
+                            <a href="#" class="text-warning text-decoration-none">Quên mật khẩu?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-login" id="loginBtn">
+                            <span id="btnText">Đăng nhập</span>
+                            <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                        </button>
+                    </form>
+
+                    <div class="divider">
+                        <span>hoặc</span>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-muted">
+                            Chưa có tài khoản?
+                            <a href="register.html" class="text-warning text-decoration-none fw-semibold">Đăng ký ngay</a>
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="/project/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Supabase JS -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const supabaseUrl = 'https://iyxrhvhrtobrdvfilldr.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5eHJodmhydG9icmR2ZmlsbGRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEyMDc3MTAsImV4cCI6MjA3Njc4MzcxMH0.TkmORgbIbybsHupWW42Xl6hT54FXfQS994qySonW7Y0';
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        const form = document.getElementById('loginForm');
+        const alertContainer = document.getElementById('alertContainer');
+        const loginBtn = document.getElementById('loginBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        function showAlert(message, type = 'danger') {
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            loginBtn.disabled = true;
+            btnText.classList.add('d-none');
+            btnSpinner.classList.remove('d-none');
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) throw error;
+
+                showAlert('Đăng nhập thành công! Đang chuyển hướng...', 'success');
+
+                setTimeout(() => {
+                    const redirectUrl = new URLSearchParams(window.location.search).get('redirect');
+                    window.location.href = redirectUrl || 'index.html';
+                }, 1500);
+
+            } catch (error) {
+                console.error('Error:', error);
+
+                let errorMessage = 'Đã xảy ra lỗi trong quá trình đăng nhập';
+
+                if (error.message.includes('Invalid login credentials')) {
+                    errorMessage = 'Email hoặc mật khẩu không hợp lệ';
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+
+                showAlert(errorMessage);
+
+                loginBtn.disabled = false;
+                btnText.classList.remove('d-none');
+                btnSpinner.classList.add('d-none');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản - Aurelius Time</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="../project/assets/LIB/bootstrap.min.css" rel="stylesheet">
+    <link href="../project/assets/LIB/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, #f8f6f0 0%, #ffffff 100%);
+        }
+
+        .register-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .register-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .register-body {
+            padding: 40px;
+        }
+
+        .form-floating {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .form-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d668 100%);
+            border: none;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-register::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.5s ease;
+        }
+
+        .btn-register:hover::before {
+            left: 100%;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-register:active {
+            transform: translateY(-1px);
+        }
+
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            background: #e0e0e0;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-weak { background: #dc3545; width: 33%; }
+        .strength-medium { background: #ffc107; width: 66%; }
+        .strength-strong { background: #28a745; width: 100%; }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: #999;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            border-color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .terms-check {
+            margin: 25px 0;
+        }
+
+        .terms-check .form-check-input {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        .terms-check .form-check-input:checked {
+            background-color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        .alert {
+            border-radius: 10px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .spinner-border-sm {
+            width: 20px;
+            height: 20px;
+            border-width: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../project/img/logo.png" alt="Aurelius Time Logo" style="height: 64px; width: auto; margin-right: 24px;">
+                Aurelius Time
+            </a>
+            <div class="ms-auto">
+                <a href="login.html" class="btn btn-outline-dark">Đăng nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Container -->
+    <div class="register-container">
+        <div class="container">
+            <div class="register-card">
+                <div class="register-header">
+                    <i class="bi bi-person-plus-fill text-warning"></i>
+                    <h2 class="fw-bold mb-2">Tạo tài khoản mới</h2>
+                    <p class="mb-0 opacity-75">Gia nhập cộng đồng những người yêu thích đồng hồ cao cấp</p>
+                </div>
+
+                <div class="register-body">
+                    <div id="alertContainer"></div>
+
+                    <form id="registerForm">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="fullName" placeholder="Họ và tên" required>
+                            <label for="fullName">Họ và tên</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            <label for="email">Email</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="tel" class="form-control" id="phone" placeholder="Số điện thoại">
+                            <label for="phone">Số điện thoại (tùy chọn)</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                            <label for="password">Mật khẩu</label>
+                        </div>
+
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="strengthBar"></div>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+                            <label for="confirmPassword">Xác nhận mật khẩu</label>
+                        </div>
+
+                        <div class="terms-check">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                <label class="form-check-label" for="agreeTerms">
+                                    Tôi đồng ý với <a href="#" class="text-warning text-decoration-none">Điều khoản dịch vụ</a> và
+                                    <a href="#" class="text-warning text-decoration-none">Chính sách bảo mật</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-register" id="registerBtn">
+                            <span id="btnText">Đăng ký</span>
+                            <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted">
+                            Đã có tài khoản?
+                            <a href="login.html" class="text-warning text-decoration-none fw-semibold">Đăng nhập ngay</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="/project/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Supabase JS -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        const form = document.getElementById('registerForm');
+        const alertContainer = document.getElementById('alertContainer');
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.getElementById('strengthBar');
+        const registerBtn = document.getElementById('registerBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        function showAlert(message, type = 'danger') {
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
+
+        function checkPasswordStrength(password) {
+            let strength = 0;
+
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+            strengthBar.className = 'password-strength-bar';
+
+            if (strength <= 2) {
+                strengthBar.classList.add('strength-weak');
+            } else if (strength <= 3) {
+                strengthBar.classList.add('strength-medium');
+            } else {
+                strengthBar.classList.add('strength-strong');
+            }
+        }
+
+        passwordInput.addEventListener('input', (e) => {
+            checkPasswordStrength(e.target.value);
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+
+            if (!agreeTerms) {
+                showAlert('Vui lòng đồng ý với điều khoản dịch vụ');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert('Mật khẩu xác nhận không khớp');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert('Mật khẩu phải có ít nhất 6 ký tự');
+                return;
+            }
+
+            registerBtn.disabled = true;
+            btnText.classList.add('d-none');
+            btnSpinner.classList.remove('d-none');
+
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: fullName,
+                            phone: phone
+                        }
+                    }
+                });
+
+                if (error) throw error;
+
+                showAlert('Đăng ký thành công! Đang chuyển hướng...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error:', error);
+
+                let errorMessage = 'Đã xảy ra lỗi trong quá trình đăng ký';
+
+                if (error.message.includes('already registered')) {
+                    errorMessage = 'Email này đã được đăng ký';
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+
+                showAlert(errorMessage);
+
+                registerBtn.disabled = false;
+                btnText.classList.remove('d-none');
+                btnSpinner.classList.add('d-none');
+            }
+        });
+    </script>
+</body>
+</html>

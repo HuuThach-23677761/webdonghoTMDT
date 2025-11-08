@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Aurelius Time</title>
+    <meta name="description" content="Tìm hiểu về lịch sử và sứ mệnh của Aurelius Time - thương hiệu đồng hồ Thụy Sĩ cao cấp từ năm 1875.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="../project/assets/LIB/bootstrap.min.css" rel="stylesheet">
+    <link href="../project/assets/LIB/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../project/img/logo.png" alt="Aurelius Time Logo" style="height: 64px; width: auto; margin-right: 24px;">
+                Aurelius Time
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="shop.html" role="button" data-bs-toggle="dropdown">
+                            Đồng hồ
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="shop.html?category=men">Đồng hồ Nam</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=women">Đồng hồ Nữ</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=automatic">Cơ tự động</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=chronograph">Chronograph</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center me-3">
+                    <div class="position-relative">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm đồng hồ..." style="width: 250px;">
+                        <div id="searchResults" class="position-absolute bg-white border rounded shadow-sm w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <div class="dropdown me-3">
+                        <button class="btn btn-link text-dark" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li id="guestMenu">
+                                <a class="dropdown-item" href="login.html">Đăng nhập</a>
+                                <a class="dropdown-item" href="register.html">Đăng ký</a>
+                            </li>
+                            <li id="userMenu" style="display: none;">
+                                <a class="dropdown-item" href="account.html">Tài khoản</a>
+                                <a class="dropdown-item" href="orders.html">Đơn hàng</a>
+                                <a class="dropdown-item" href="wishlist.html">Yêu thích</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="logout()">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-link text-dark position-relative me-3" onclick="toggleWishlist()">
+                        <i class="bi bi-heart fs-5"></i>
+                        <span id="wishlistCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+
+                    <button class="btn btn-link text-dark position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="bi bi-bag fs-5"></i>
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section position-relative overflow-hidden" style="height: 50vh; min-height: 400px;">
+        <div class="hero-bg position-absolute w-100 h-100">
+            <img src="../project/img/banner3.png"
+                 alt="Về Aurelius Time" class="w-100 h-100 object-fit-cover">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        </div>
+        <div class="container position-relative text-center text-white h-100 d-flex align-items-center justify-content-center">
+            <div>
+                <h1 class="display-3 fw-bold mb-3 font-serif">Về Aurelius Time</h1>
+                <p class="lead">Hơn 150 năm truyền thống chế tác đồng hồ Thụy Sĩ</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="/project/img/pexels-photo-190819.jpeg"
+                         alt="Xưởng sản xuất" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold font-serif mb-4">Di sản của chúng tôi</h2>
+                    <p class="lead text-muted mb-3">
+                        Từ năm 1875, Aurelius Time đã dẫn đầu trong nghệ thuật chế tác đồng hồ Thụy Sĩ cao cấp.
+                        Được thành lập tại trung tâm của thung lũng Jura, xưởng sản xuất của chúng tôi đã trở thành
+                        biểu tượng của sự tinh xảo và đổi mới.
+                    </p>
+                    <p class="text-muted">
+                        Mỗi chiếc đồng hồ Aurelius được chế tác bởi những nghệ nhân lành nghề với hơn 20 năm kinh nghiệm.
+                        Chúng tôi kết hợp kỹ thuật truyền thống với công nghệ hiện đại để tạo ra những tác phẩm vượt thời gian.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold font-serif mb-3">Giá trị cốt lõi</h2>
+                <p class="lead text-muted">Những nguyên tắc định hướng mọi quyết định của chúng tôi</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                             style="width: 80px; height: 80px;">
+                            <i class="bi bi-gem fs-2 text-dark"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Chất lượng tuyệt hảo</h5>
+                        <p class="text-muted">
+                            Mỗi chi tiết được kiểm tra kỹ lưỡng để đảm bảo độ chính xác và độ bền hoàn hảo.
+                            Chúng tôi không bao giờ thỏa hiệp về chất lượng.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                             style="width: 80px; height: 80px;">
+                            <i class="bi bi-lightbulb fs-2 text-dark"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Đổi mới sáng tạo</h5>
+                        <p class="text-muted">
+                            Chúng tôi liên tục đầu tư vào nghiên cứu và phát triển để tạo ra những cơ chế đồng hồ
+                            tiên tiến nhất trong ngành.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                             style="width: 80px; height: 80px;">
+                            <i class="bi bi-heart fs-2 text-dark"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Đam mê nghề thủ công</h5>
+                        <p class="text-muted">
+                            Mỗi chiếc đồng hồ là minh chứng cho tình yêu và sự tận tâm của các nghệ nhân chúng tôi
+                            với nghệ thuật chế tác đồng hồ.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <img src="/project/img/pexels-photo-280250.jpeg"
+                         alt="Quy trình sản xuất" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <h2 class="display-5 fw-bold font-serif mb-4">Quy trình chế tác</h2>
+                    <div class="mb-4">
+                        <div class="d-flex mb-3">
+                            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3"
+                                 style="width: 40px; height: 40px; min-width: 40px;">
+                                <span class="fw-bold text-dark">1</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Thiết kế</h6>
+                                <p class="text-muted mb-0">Mỗi mẫu đồng hồ được phác thảo và hoàn thiện trong hơn 6 tháng.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3"
+                                 style="width: 40px; height: 40px; min-width: 40px;">
+                                <span class="fw-bold text-dark">2</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Chế tạo bộ máy</h6>
+                                <p class="text-muted mb-0">Bộ máy được lắp ráp thủ công với hơn 200 linh kiện tinh xảo.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3"
+                                 style="width: 40px; height: 40px; min-width: 40px;">
+                                <span class="fw-bold text-dark">3</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Kiểm tra chất lượng</h6>
+                                <p class="text-muted mb-0">Mỗi chiếc đồng hồ trải qua 15 ngày kiểm tra nghiêm ngặt.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3"
+                                 style="width: 40px; height: 40px; min-width: 40px;">
+                                <span class="fw-bold text-dark">4</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Hoàn thiện</h6>
+                                <p class="text-muted mb-0">Đánh bóng và chế tác vỏ đồng hồ đến từng chi tiết nhỏ nhất.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3">
+                    <h2 class="display-4 fw-bold text-warning mb-2">150+</h2>
+                    <p class="text-muted mb-0">Năm kinh nghiệm</p>
+                </div>
+                <div class="col-md-3">
+                    <h2 class="display-4 fw-bold text-warning mb-2">500+</h2>
+                    <p class="text-muted mb-0">Nghệ nhân lành nghề</p>
+                </div>
+                <div class="col-md-3">
+                    <h2 class="display-4 fw-bold text-warning mb-2">2M+</h2>
+                    <p class="text-muted mb-0">Đồng hồ được sản xuất</p>
+                </div>
+                <div class="col-md-3">
+                    <h2 class="display-4 fw-bold text-warning mb-2">100+</h2>
+                    <p class="text-muted mb-0">Quốc gia phân phối</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold font-serif mb-3">Trách nhiệm bền vững</h2>
+                <p class="lead text-muted">Cam kết của chúng tôi với tương lai</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <i class="bi bi-tree text-warning fs-1 mb-3"></i>
+                            <h5 class="fw-bold mb-3">Thân thiện môi trường</h5>
+                            <p class="text-muted mb-0">
+                                Chúng tôi sử dụng nguồn năng lượng tái tạo 100% trong quy trình sản xuất
+                                và cam kết trung hòa carbon vào năm 2030.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <i class="bi bi-people text-warning fs-1 mb-3"></i>
+                            <h5 class="fw-bold mb-3">Trách nhiệm xã hội</h5>
+                            <p class="text-muted mb-0">
+                                Chúng tôi hỗ trợ các cộng đồng địa phương và đảm bảo điều kiện làm việc
+                                công bằng cho tất cả nhân viên của mình.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold font-serif mb-4">Khám phá bộ sưu tập của chúng tôi</h2>
+            <p class="lead text-muted mb-4">
+                Trải nghiệm sự tinh xảo và thanh lịch của đồng hồ Aurelius Time
+            </p>
+            <a href="shop.html" class="btn btn-warning btn-lg px-5">Xem bộ sưu tập</a>
+        </div>
+    </section>
+
+<!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Aurelius Time</h5>
+                    <p class="text-light">Chế tác những chiếc đồng hồ đặc biệt từ năm 1875. Mỗi chiếc đồng hồ đại diện cho đỉnh cao của nghề thủ công và thiết kế Thụy Sĩ.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Dịch vụ khách hàng</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Liên hệ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Thông tin giao hàng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Đổi trả</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Công ty</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-light text-decoration-none">Về chúng tôi</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Tuyển dụng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Báo chí</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Phát triển bền vững</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold mb-3">Bản tin</h6>
+                    <p class="text-light">Đăng ký để nhận thông tin cập nhật về sản phẩm mới và ưu đãi độc quyền.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Nhập email của bạn">
+                        <button class="btn btn-warning" type="button">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2025 Aurelius Time. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Chính sách bảo mật</a>
+                    <a href="#" class="text-light text-decoration-none">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Giỏ hàng</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cartItems">
+                <div class="text-center py-5">
+                    <i class="bi bi-bag text-muted display-4"></i>
+                    <p class="text-muted mt-3">Giỏ hàng của bạn đang trống</p>
+                </div>
+            </div>
+            <div id="cartFooter" class="mt-auto" style="display: none;">
+                <div class="border-top pt-3">
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong>Tổng cộng: <span id="cartTotal">0₫</span></strong>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a href="cart.html" class="btn btn-outline-dark">Xem giỏ hàng</a>
+                        <a href="checkout.html" class="btn btn-warning">Thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap 5 JS -->
+    <script src="/project/assets/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

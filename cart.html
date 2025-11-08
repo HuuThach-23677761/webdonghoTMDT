@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Aurelius Time</title>
+    <meta name="description" content="Xem lại các sản phẩm đồng hồ cao cấp đã chọn và tiến hành thanh toán.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="../project/assets/LIB/bootstrap.min.css" rel="stylesheet">
+    <link href="../project/assets/LIB/font/bootstrap-icons.css" rel="stylesheet">
+    
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../project/img/logo.png" alt="Aurelius Time Logo" style="height: 64px; width: auto; margin-right: 24px;">
+                Aurelius Time
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="shop.html" role="button" data-bs-toggle="dropdown">
+                            Đồng hồ
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="shop.html?category=men">Đồng hồ Nam</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=women">Đồng hồ Nữ</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=automatic">Cơ tự động</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=chronograph">Chronograph</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                
+                <!-- Search -->
+                <div class="d-flex align-items-center me-3">
+                    <div class="position-relative">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm đồng hồ..." style="width: 250px;">
+                        <div id="searchResults" class="position-absolute bg-white border rounded shadow-sm w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+                    </div>
+                </div>
+                
+                <!-- User Actions -->
+                <div class="d-flex align-items-center">
+                    <div class="dropdown me-3">
+                        <button class="btn btn-link text-dark" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li id="guestMenu">
+                                <a class="dropdown-item" href="login.html">Đăng nhập</a>
+                                <a class="dropdown-item" href="register.html">Đăng ký</a>
+                            </li>
+                            <li id="userMenu" style="display: none;">
+                                <a class="dropdown-item" href="account.html">Tài khoản</a>
+                                <a class="dropdown-item" href="orders.html">Đơn hàng</a>
+                                <a class="dropdown-item" href="wishlist.html">Yêu thích</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="logout()">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn btn-link text-dark position-relative me-3" onclick="toggleWishlist()">
+                        <i class="bi bi-heart fs-5"></i>
+                        <span id="wishlistCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+                    
+                    <button class="btn btn-link text-dark position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="bi bi-bag fs-5"></i>
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Content -->
+    <div class="container mb-5" style="margin-top: 120px;">
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-bold font-serif">Giỏ hàng</h1>
+            <p class="lead text-muted">Xem lại các sản phẩm đồng hồ đã chọn</p>
+        </div>
+
+        <div id="cartPage">
+            <!-- Cart content will be loaded here -->
+        </div>
+    </div>
+
+<!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Aurelius Time</h5>
+                    <p class="text-light">Chế tác những chiếc đồng hồ đặc biệt từ năm 1875. Mỗi chiếc đồng hồ đại diện cho đỉnh cao của nghề thủ công và thiết kế Thụy Sĩ.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Dịch vụ khách hàng</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Liên hệ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Thông tin giao hàng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Đổi trả</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Công ty</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-light text-decoration-none">Về chúng tôi</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Tuyển dụng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Báo chí</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Phát triển bền vững</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold mb-3">Bản tin</h6>
+                    <p class="text-light">Đăng ký để nhận thông tin cập nhật về sản phẩm mới và ưu đãi độc quyền.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Nhập email của bạn">
+                        <button class="btn btn-warning" type="button">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2025 Aurelius Time. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Chính sách bảo mật</a>
+                    <a href="#" class="text-light text-decoration-none">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Giỏ hàng</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cartItems">
+                <div class="text-center py-5">
+                    <i class="bi bi-bag text-muted display-4"></i>
+                    <p class="text-muted mt-3">Giỏ hàng của bạn đang trống</p>
+                </div>
+            </div>
+            <div id="cartFooter" class="mt-auto" style="display: none;">
+                <div class="border-top pt-3">
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong>Tổng cộng: <span id="cartTotal">0₫</span></strong>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a href="cart.html" class="btn btn-outline-dark">Xem giỏ hàng</a>
+                        <a href="checkout.html" class="btn btn-warning">Thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="/project/assets/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/products-data.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/cart-page.js"></script>
+</body>
+</html>

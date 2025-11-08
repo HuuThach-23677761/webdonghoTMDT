@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Aurelius Time</title>
+    <meta name="description" content="Liên hệ với Aurelius Time. Chúng tôi sẵn sàng trả lời mọi câu hỏi về đồng hồ Thụy Sĩ cao cấp của chúng tôi.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="../project/assets/LIB/bootstrap.min.css" rel="stylesheet">
+    <link href="../project/assets/LIB/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../project/img/logo.png" alt="Aurelius Time Logo" style="height: 64px; width: auto; margin-right: 24px;">
+                Aurelius Time
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="shop.html" role="button" data-bs-toggle="dropdown">
+                            Đồng hồ
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="shop.html?category=men">Đồng hồ Nam</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=women">Đồng hồ Nữ</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=automatic">Cơ tự động</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=chronograph">Chronograph</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center me-3">
+                    <div class="position-relative">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm đồng hồ..." style="width: 250px;">
+                        <div id="searchResults" class="position-absolute bg-white border rounded shadow-sm w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <div class="dropdown me-3">
+                        <button class="btn btn-link text-dark" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li id="guestMenu">
+                                <a class="dropdown-item" href="login.html">Đăng nhập</a>
+                                <a class="dropdown-item" href="register.html">Đăng ký</a>
+                            </li>
+                            <li id="userMenu" style="display: none;">
+                                <a class="dropdown-item" href="account.html">Tài khoản</a>
+                                <a class="dropdown-item" href="orders.html">Đơn hàng</a>
+                                <a class="dropdown-item" href="wishlist.html">Yêu thích</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="logout()">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-link text-dark position-relative me-3" onclick="toggleWishlist()">
+                        <i class="bi bi-heart fs-5"></i>
+                        <span id="wishlistCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+
+                    <button class="btn btn-link text-dark position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="bi bi-bag fs-5"></i>
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section position-relative overflow-hidden" style="height: 50vh; min-height: 400px;">
+        <div class="hero-bg position-absolute w-100 h-100">
+            <img src="../project/img/tech1.jpg"
+                 alt="Liên hệ Aurelius Time" class="w-100 h-100 object-fit-cover">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        </div>
+        <div class="container position-relative text-center text-white h-100 d-flex align-items-center justify-content-center">
+            <div>
+                <h1 class="display-3 fw-bold mb-3 font-serif">Liên hệ với chúng tôi</h1>
+                <p class="lead">Chúng tôi sẵn sàng hỗ trợ bạn</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm h-100 text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-geo-alt fs-3 text-dark"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Địa chỉ cửa hàng</h5>
+                        <p class="text-muted mb-2">123 Đường Lê Lợi</p>
+                        <p class="text-muted mb-2">Quận 1, Thành phố Hồ Chí Minh</p>
+                        <p class="text-muted">Việt Nam</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm h-100 text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-telephone fs-3 text-dark"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Điện thoại</h5>
+                        <p class="text-muted mb-2">Hotline: +84 901 234 567</p>
+                        <p class="text-muted mb-2">Tel: +84 28 3822 1234</p>
+                        <p class="text-muted">Thứ 2 - Thứ 7: 9:00 - 18:00</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm h-100 text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-envelope fs-3 text-dark"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Email</h5>
+                        <p class="text-muted mb-2">info@aureliustime.com</p>
+                        <p class="text-muted mb-2">support@aureliustime.com</p>
+                        <p class="text-muted">Phản hồi trong vòng 24h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold font-serif mb-4">Gửi tin nhắn cho chúng tôi</h2>
+                    <p class="text-muted mb-4">
+                        Điền vào biểu mẫu dưới đây và chúng tôi sẽ liên hệ lại với bạn trong thời gian sớm nhất.
+                        Bạn cũng có thể liên hệ trực tiếp qua số hotline hoặc email của chúng tôi.
+                    </p>
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Họ và tên</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-bold">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label fw-bold">Chủ đề</label>
+                            <select class="form-select" id="subject" required>
+                                <option value="">Chọn chủ đề</option>
+                                <option value="product">Thông tin sản phẩm</option>
+                                <option value="order">Đơn hàng</option>
+                                <option value="warranty">Bảo hành</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label fw-bold">Nội dung</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-lg w-100">Gửi tin nhắn</button>
+                    </form>
+                    <div id="formMessage" class="mt-3"></div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold font-serif mb-4">Giờ làm việc</h2>
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">Thứ Hai - Thứ Sáu:</span>
+                                <span>9:00 - 18:00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">Thứ Bảy:</span>
+                                <span>10:00 - 17:00</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Chủ Nhật:</span>
+                                <span>Nghỉ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="h5 fw-bold mb-3">Câu hỏi thường gặp</h3>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item border-0 shadow-sm mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Làm thế nào để kiểm tra tính xác thực của đồng hồ?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Mỗi chiếc đồng hồ Aurelius đi kèm với giấy chứng nhận xác thực và số seri duy nhất.
+                                    Bạn có thể xác minh tính xác thực trực tuyến hoặc liên hệ với chúng tôi để được hỗ trợ.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 shadow-sm mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Thời gian bảo hành là bao lâu?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Aurelius Time cung cấp bảo hành trọn đời cho tất cả các sản phẩm.
+                                    Bảo hành bao gồm các lỗi sản xuất và vận hành bộ máy.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 shadow-sm mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Tôi có thể đặt hàng từ nước ngoài không?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Có, chúng tôi giao hàng đến hơn 100 quốc gia trên toàn thế giới với dịch vụ
+                                    vận chuyển bảo hiểm và theo dõi đầy đủ.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 shadow-sm mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Chính sách đổi trả như thế nào?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Bạn có thể đổi trả sản phẩm trong vòng 30 ngày nếu sản phẩm còn nguyên vẹn
+                                    và chưa qua sử dụng. Vui lòng liên hệ để được hướng dẫn chi tiết.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold font-serif mb-3">Tìm chúng tôi trên bản đồ</h2>
+            </div>
+            <div class="ratio ratio-21x9">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4638125066957!2d106.69827731533403!3d10.776889692319846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4b3330bcc1%3A0xb53d6b23b87a82c!2zxJDGsOG7nW5nIEzDqiBM4bujaSwgQuG6v24gTmdox6ksIFF14bqtbiAxLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1234567890123!5m2!1svi!2s"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-dark text-white">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold font-serif mb-4">Kết nối với chúng tôi</h2>
+            <p class="lead text-muted mb-4">Theo dõi chúng tôi trên mạng xã hội để cập nhật tin tức mới nhất</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="#" class="btn btn-outline-light btn-lg rounded-circle" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-facebook fs-4"></i>
+                </a>
+                <a href="#" class="btn btn-outline-light btn-lg rounded-circle" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-instagram fs-4"></i>
+                </a>
+                <a href="#" class="btn btn-outline-light btn-lg rounded-circle" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-twitter fs-4"></i>
+                </a>
+                <a href="#" class="btn btn-outline-light btn-lg rounded-circle" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-youtube fs-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Aurelius Time</h5>
+                    <p class="text-light">Chế tác những chiếc đồng hồ đặc biệt từ năm 1875. Mỗi chiếc đồng hồ đại diện cho đỉnh cao của nghề thủ công và thiết kế Thụy Sĩ.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Dịch vụ khách hàng</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Liên hệ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Thông tin giao hàng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Đổi trả</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Công ty</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-light text-decoration-none">Về chúng tôi</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Tuyển dụng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Báo chí</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Phát triển bền vững</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold mb-3">Bản tin</h6>
+                    <p class="text-light">Đăng ký để nhận thông tin cập nhật về sản phẩm mới và ưu đãi độc quyền.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Nhập email của bạn">
+                        <button class="btn btn-warning" type="button">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2025 Aurelius Time. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Chính sách bảo mật</a>
+                    <a href="#" class="text-light text-decoration-none">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="/project/assets/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formMessage = document.getElementById('formMessage');
+            formMessage.innerHTML = '<div class="alert alert-success">Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong vòng 24 giờ.</div>';
+
+            this.reset();
+
+            setTimeout(() => {
+                formMessage.innerHTML = '';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

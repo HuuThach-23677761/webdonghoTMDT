@@ -1,0 +1,397 @@
+/* Admin Dashboard Styles */
+
+.sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.sidebar .nav-link.active {
+    color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.1);
+    border-right: 3px solid #ffc107;
+}
+
+.sidebar .nav-link i {
+    margin-right: 8px;
+}
+
+/* Main content */
+main {
+    margin-top: 56px;
+    padding-top: 20px;
+}
+
+/* KPI Cards */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Tables */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table img {
+    border-radius: 5px;
+}
+
+/* Status badges */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5em 0.75em;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.status-paid {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.status-shipped {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.status-delivered {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Action buttons */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-group .btn {
+    margin-right: 5px;
+}
+
+.btn-group .btn:last-child {
+    margin-right: 0;
+}
+
+/* Modal customizations */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+/* Form elements */
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+/* Admin section navigation */
+.admin-section {
+    display: none;
+}
+
+.admin-section.active {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        padding: 0;
+    }
+    
+    main {
+        margin-top: 0;
+    }
+    
+    .sidebar .nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+    }
+    
+    .sidebar .nav-link {
+        white-space: nowrap;
+        margin-right: 10px;
+        border-radius: 20px;
+    }
+    
+    .sidebar .nav-link.active {
+        border-right: none;
+        border-bottom: 3px solid #ffc107;
+    }
+}
+
+/* Chart containers */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin: 20px 0;
+}
+
+/* Statistics cards */
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-card.revenue {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.stat-card.orders {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.stat-card.products {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.stat-card.users {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Loading states */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+
+.loading i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Empty states */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state h5 {
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+/* Success/Error messages */
+.alert {
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #333;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: #6c757d;
+}
+
+.breadcrumb-item.active {
+    color: #ffc107;
+}
+
+/* Custom switches */
+.form-switch .form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.form-switch .form-check-input:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+/* Pagination */
+.pagination {
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.page-link {
+    color: #333;
+    border-color: #dee2e6;
+    padding: 8px 16px;
+}
+
+.page-link:hover {
+    color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.1);
+    border-color: #ffc107;
+}
+
+.page-item.active .page-link {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+}
+
+/* Search and filter bar */
+.admin-toolbar {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.admin-toolbar .form-control {
+    border-radius: 20px;
+}
+
+.admin-toolbar .btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+/* Data visualization */
+.metric-card {
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+}
+
+.metric-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.metric-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurelius Time - Đồng hồ Thụy Sĩ cao cấp</title>
+    <meta name="description" content="Khám phá bộ sưu tập đồng hồ Thụy Sĩ cao cấp từ Aurelius Time. Những chiếc đồng hồ premium được chế tác với độ chính xác và sự thanh lịch.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="../project/assets/LIB/bootstrap.min.css" rel="stylesheet">
+    <link href="../project/assets/LIB/font/bootstrap-icons.css" rel="stylesheet">
+    
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="../project/img/logo.png" alt="Aurelius Time Logo" style="height: 64px; width: auto; margin-right: 24px;">
+                Aurelius Time
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="shop.html" role="button" data-bs-toggle="dropdown">
+                            Đồng hồ
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="shop.html?category=men">Đồng hồ Nam</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=women">Đồng hồ Nữ</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=automatic">Cơ tự động</a></li>
+                            <li><a class="dropdown-item" href="shop.html?category=chronograph">Chronograph</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                
+                <!-- Tìm kiếm -->
+                <div class="d-flex align-items-center me-3">
+                    <div class="position-relative">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm đồng hồ..." style="width: 250px;">
+                        <div id="searchResults" class="position-absolute bg-white border rounded shadow-sm w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+                    </div>
+                </div>
+                
+                <!-- Hành động người dùng -->
+                <div class="d-flex align-items-center">
+                    <div class="dropdown me-3">
+                        <button class="btn btn-link text-dark" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li id="guestMenu">
+                                <a class="dropdown-item" href="login.html">Đăng nhập</a>
+                                <a class="dropdown-item" href="register.html">Đăng ký</a>
+                            </li>
+                            <li id="userMenu" style="display: none;">
+                                <a class="dropdown-item" href="#">Tài khoản</a>
+                                <a class="dropdown-item" href="cart.html">Đơn hàng</a>
+                                <a class="dropdown-item" href="#">Yêu thích</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="logout()">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn btn-link text-dark position-relative me-3" onclick="toggleWishlist()">
+                        <i class="bi bi-heart fs-5"></i>
+                        <span id="wishlistCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+                    
+                    <button class="btn btn-link text-dark position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="bi bi-bag fs-5"></i>
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="display: none;">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider position-relative overflow-hidden">
+        <div class="hero-slides">
+            <div class="hero-slide active">
+                <img src="../project/img/banner1.png"
+                     alt="Đồng hồ cao cấp" class="w-100 h-100 object-fit-cover">
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+                <div class="hero-content">
+                    <h1 class="display-3 fw-bold mb-4 font-serif">Vẻ đẹp vượt thời gian</h1>
+                    <p class="lead mb-5">Khám phá bộ sưu tập đồng hồ Thụy Sĩ tinh xảo, được chế tác với độ chính xác và thiết kế dành cho những người sành điệu.</p>
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="shop.html" class="btn btn-warning btn-lg px-4">Khám phá bộ sưu tập</a>
+                        <a href="about.html" class="btn btn-outline-light btn-lg px-4">Di sản của chúng tôi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="../project/img/banner2.webp"
+                     alt="Đồng hồ sang trọng" class="w-100 h-100 object-fit-cover">
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+                <div class="hero-content">
+                    <h1 class="display-3 fw-bold mb-4 font-serif">Nghệ thuật chế tác Thụy Sĩ</h1>
+                    <p class="lead mb-5">Mỗi chiếc đồng hồ là một kiệt tác được tạo ra bởi đôi bàn tay tài hoa của những nghệ nhân lành nghề.</p>
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="shop.html?category=automatic" class="btn btn-warning btn-lg px-4">Xem đồng hồ cơ</a>
+                        <a href="about.html" class="btn btn-outline-light btn-lg px-4">Tìm hiểu thêm</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="../project/img/banner3.png"
+                     alt="Đồng hồ thời trang" class="w-100 h-100 object-fit-cover">
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+                <div class="hero-content">
+                    <h1 class="display-3 fw-bold mb-4 font-serif">Phong cách đẳng cấp</h1>
+                    <p class="lead mb-5">Nâng tầm phong cách của bạn với những thiết kế đồng hồ tinh tế và sang trọng nhất.</p>
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="shop.html?category=women" class="btn btn-warning btn-lg px-4">Bộ sưu tập nữ</a>
+                        <a href="shop.html?category=men" class="btn btn-outline-light btn-lg px-4">Bộ sưu tập nam</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="hero-nav hero-prev" onclick="heroSlider.prev()">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="hero-nav hero-next" onclick="heroSlider.next()">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
+        <!-- Slider Indicators -->
+        <div class="hero-indicators">
+            <span class="indicator active" onclick="heroSlider.goTo(0)"></span>
+            <span class="indicator" onclick="heroSlider.goTo(1)"></span>
+            <span class="indicator" onclick="heroSlider.goTo(2)"></span>
+        </div>
+    </section>
+
+    <!-- Bộ sưu tập nổi bật -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold font-serif mb-3">Bộ sưu tập nổi bật</h2>
+                <p class="lead text-muted">Những chiếc đồng hồ được tuyển chọn đại diện cho đỉnh cao của nghề thủ công Thụy Sĩ</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 collection-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="/project/img/pexels-photo-190819.jpeg" 
+                                 class="card-img-top" alt="Bộ sưu tập Nam" style="height: 250px; object-fit: cover;">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-serif">Bộ sưu tập Nam</h5>
+                            <p class="card-text text-muted">Những chiếc đồng hồ mạnh mẽ và tinh tế dành cho quý ông hiện đại</p>
+                            <a href="shop.html?category=men" class="btn btn-outline-dark">Xem đồng hồ Nam</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 collection-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="../project/img/banner3.png" 
+                                 class="card-img-top" alt="Bộ sưu tập Nữ" style="height: 250px; object-fit: cover;">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-serif">Bộ sưu tập Nữ</h5>
+                            <p class="card-text text-muted">Những chiếc đồng hồ thanh lịch và tinh tế bổ sung cho mọi phong cách</p>
+                            <a href="shop.html?category=women" class="btn btn-outline-dark">Xem đồng hồ Nữ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 collection-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="/project/img/pexels-photo-280250.jpeg" 
+                                 class="card-img-top" alt="Bộ sưu tập Thể thao" style="height: 250px; object-fit: cover;">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-serif">Bộ sưu tập Thể thao</h5>
+                            <p class="card-text text-muted">Những chiếc đồng hồ hiệu suất cao được chế tạo cho cuộc phiêu lưu</p>
+                            <a href="shop.html?category=chronograph" class="btn btn-outline-dark">Xem đồng hồ Thể thao</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Showcase -->
+    <section class="video-showcase py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-4 fw-bold font-serif mb-4">Bộ máy hoạt động</h2>
+                    <p class="lead mb-4">Chứng kiến sự phức tạp và vẻ đẹp của bộ máy đồng hồ cơ tự động Thụy Sĩ. Mỗi chi tiết nhỏ được chế tác hoàn hảo để tạo nên một tác phẩm nghệ thuật đeo tay.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-2"></i> Bộ máy cơ tự động 100% Thụy Sĩ</li>
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-2"></i> Độ chính xác đến từng giây</li>
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-warning me-2"></i> Bảo hành trọn đời</li>
+                    </ul>
+                    <a href="about.html" class="btn btn-warning btn-lg">Tìm hiểu thêm</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="video-container position-relative">
+                        <div class="video-placeholder">
+                            <img src="../project/img/tech1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sản phẩm mới -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold font-serif mb-3">Sản phẩm mới</h2>
+                <p class="lead text-muted">Những bổ sung mới nhất cho bộ sưu tập được tuyển chọn của chúng tôi</p>
+            </div>
+            <div class="row g-4" id="newArrivals">
+                <!-- Sản phẩm sẽ được tải ở đây -->
+            </div>
+            <div class="text-center mt-5">
+                <a href="shop.html" class="btn btn-outline-dark btn-lg">Xem tất cả sản phẩm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Huy hiệu tin cậy -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="p-4">
+                        <i class="bi bi-shield-check text-warning display-4 mb-3"></i>
+                        <h5 class="fw-bold">Chính hãng Thụy Sĩ</h5>
+                        <p class="text-muted">Mỗi chiếc đồng hồ đều được chứng nhận chính hãng Thụy Sĩ với bộ máy xác thực</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4">
+                        <i class="bi bi-truck text-warning display-4 mb-3"></i>
+                        <h5 class="fw-bold">Giao hàng toàn cầu</h5>
+                        <p class="text-muted">Miễn phí giao hàng có bảo hiểm đến hơn 100 quốc gia trên toàn thế giới</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4">
+                        <i class="bi bi-award text-warning display-4 mb-3"></i>
+                        <h5 class="fw-bold">Bảo hành trọn đời</h5>
+                        <p class="text-muted">Bảo hành toàn diện và hỗ trợ bảo dưỡng chuyên nghiệp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Aurelius Time</h5>
+                    <p class="text-light">Chế tác những chiếc đồng hồ đặc biệt từ năm 1875. Mỗi chiếc đồng hồ đại diện cho đỉnh cao của nghề thủ công và thiết kế Thụy Sĩ.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Dịch vụ khách hàng</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Liên hệ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Thông tin giao hàng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Đổi trả</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3">Công ty</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-light text-decoration-none">Về chúng tôi</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Tuyển dụng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Báo chí</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Phát triển bền vững</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold mb-3">Bản tin</h6>
+                    <p class="text-light">Đăng ký để nhận thông tin cập nhật về sản phẩm mới và ưu đãi độc quyền.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Nhập email của bạn">
+                        <button class="btn btn-warning" type="button">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2025 Aurelius Time. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Chính sách bảo mật</a>
+                    <a href="#" class="text-light text-decoration-none">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Giỏ hàng Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Giỏ hàng</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cartItems">
+                <div class="text-center py-5">
+                    <i class="bi bi-bag text-muted display-4"></i>
+                    <p class="text-muted mt-3">Giỏ hàng của bạn đang trống</p>
+                </div>
+            </div>
+            <div id="cartFooter" class="mt-auto" style="display: none;">
+                <div class="border-top pt-3">
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong>Tổng cộng: <span id="cartTotal">0₫</span></strong>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a href="cart.html" class="btn btn-outline-dark">Xem giỏ hàng</a>
+                        <a href="checkout.html" class="btn btn-warning">Thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="/project/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/products-data.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/hero-slider.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
